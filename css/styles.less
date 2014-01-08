@@ -1,20 +1,5 @@
 @import "bootstrap/less/bootstrap.less";
 
-
-/*
-- Very simple bootstrap 3 form that accepts a user's phone number and their zip code.
-- Includes a checkbox that asks whether they'd like to sign up for SMS alerts for future actions.
-- When a user enters their number, it first validates:
-
-    - to make sure that the number is a valid 9-digit US number, and gives an error otherwise.
-    - to make sure the zip code is a valid 6 digit number, gives an error otherwise.
-
-- If that is the case, it submits the number to adam's call tool by making a request to call.taskforce.is/create?campaignId=restrict-nsa&userzip=xxxxx&userPhone=xxxxxxxxx
-- As long as the request is successful (there is a JSON reply), it blanks out the form and says "Calling you now."
-- After 7 seconds, the "Calling you now" message disappears and the form reappears (with the same form inputs saved). We don't have a callback system set up so we can actually detect whether the call was successful or not.
-
-*/
-
 body {
 	max-width: 400px;
 }
