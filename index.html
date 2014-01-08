@@ -8,19 +8,29 @@
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body>
-        <h1>Call your representative</h1>
-        <form method="get" action="https://call.taskforce.is/create" role="form">
-            <label class="col-sm-2 control-label" for="userzip">Zip Code</label>
-            <input type="text" name="userzip" class="col-sm-5 form-control">
-            <label class="col-sm-2 control-label" for="userPhone">Phone Number</label>
-            <input type="tel" name="userPhone" class="col-sm-5 form-control">
-            <input type="hidden" value="restrict-nsa" name="campaignId">
-            <div class="checkbox col-sm-12">
-                <label for="signup">
-                    <input type="checkbox" name="signup" class=""> sign up for SMS alerts for future actions
-                </label>
+        <h1>Call Your Representative</h1>
+        <form method="get" action="https://call.taskforce.is/create" role="form" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label" for="userzip">Zip Code</label>
+                <div class="col-sm-9">
+                    <input type="text" name="userzip" class="form-control" id="userzip">
+                </div>
             </div>
-        <input type="Submit" value="Call" class="btn col-sm-12">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 control-label" for="userPhone">Phone Number</label>
+                <div class="col-sm-9">
+                    <input type="tel" name="userPhone" class="form-control" id="userPhone">
+                </div>
+            </div>
+            <input type="hidden" value="restrict-nsa" name="campaignId">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <label for="signup">
+                        <input type="checkbox" name="signup" id="signup"> Sign up for SMS alerts for future actions
+                    </label>
+                </div>
+            </div>
+        <input id="submit" type="Submit" value="Call Now" class="btn col-sm-12 col-xs-12 col-sm-offset-1 btn-primary">
         </form>
         <script src="js/main.js"></script>
     </body>
