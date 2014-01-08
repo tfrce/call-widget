@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Call Widgeet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+    </head>
+    <body>
+        <h1>Call your representative</h1>
+        <form method="get" action="https://call.taskforce.is/create" role="form">
+            <input type="text" name="userzip" class="form-control">
+            <input type="tel" name="userPhone" class="form-control">
+            <input type="hidden" value="restrict-nsa" name="campaignId">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="signup"> sign up for SMS alerts for future actions
+                    </label>
+                </div>
+        </form>
+        <input type="Submit" value="Call" class="btn">
+        <script src="js/main.js"></script>
+    </body>
+</html>
