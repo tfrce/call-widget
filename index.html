@@ -9,11 +9,11 @@
     </head>
     <body>
         <h1>Call Your Representative</h1>
-        <form method="get" action="https://call.taskforce.is/create" role="form" class="form-horizontal">
+        <form method="get" action="http://call.taskforce.is/create" id="call-form" role="form" class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-2 col-sm-offset-1 control-label" for="userzip">Zip Code</label>
+                <label class="col-sm-2 col-sm-offset-1 control-label" for="userZip">Zip Code</label>
                 <div class="col-sm-9">
-                    <input type="text" name="userzip" class="form-control" id="userzip">
+                    <input type="text" name="userZip" class="form-control" id="userZip">
                 </div>
             </div>
             <div class="form-group">
@@ -30,6 +30,7 @@
                     </label>
                 </div>
             </div>
+            <span id="error-text"></span>
         <input id="submit" type="Submit" value="Call Now" class="btn col-sm-12 col-xs-12 col-sm-offset-1 btn-primary">
         </form>
         <script src="js/main.js"></script>
