@@ -1,74 +1,87 @@
+(function() {
 
-function isValidPhoneNumber(value) {
-    if (!value) return false;
-    var count = value.replace(/[^0-9]/g, "").length;
+	// We'l use these
+	var errorBox = document.getElementById("error-text"),
+		form = document.getElementById("call-form");
 
-    return count == 10 || count == 11;
-}
+	var isValidPhoneNumber= function (value) {
+		// Only Allow 9 digit US numbers accepting common formats
+        return value.match(/^(?:\(\d{3}\)|\d{3})(?: *- *)?\d{3}(?: *- *)?\d{4}$/);
+    };
 
-function isValidZipCode(value) {
-    if (!value) return false;
-    var count = value.replace(/[^0-9]/g, "").length;
+    var isValidZipCode = function (value) {
+		// Only allow 5 numbers
+        return value.match(/^[0-9]{5}$/);
+    };
 
-    return count == 5;
-}
+    var zipCodeError = function(el) {
+        errorBox.innerHTML += "That's an invalid zip code.";
+        document.getElementById("userZip").parentNode.parentNode.className += " has-error";
+    };
 
+    var phoneError = function(el) {
+        errorBox.innerHTML += " That's an invalid phone number.";
+        document.getElementById("userPhone").parentNode.parentNode.className += " has-error";
 
-var zipCodeError = function (el) {
-  document.getElementById("error-text").innerHTML += "Invalid Zip";
-
-};
-
-var phoneError = function (el) {
-  document.getElementById("error-text").innerHTML += "Invalid Phone";
-};
-
-
-// On form submit, validate fields
-
-var onFormSubmit = function (e) {
-  document.getElementById("error-text").innerHTML = "";
-  e.preventDefault();
-  var userZip = document.getElementById("userZip");
-  var userPhone = document.getElementById("userPhone");
-
-  console.log(isValidZipCode(userZip.value), isValidPhoneNumber(userPhone.value));
-
-  var errors = false;
-
-  // Valid Zip?
-  if(!isValidZipCode(userZip.value)) {
-    zipCodeError(userZip);
-    errors = true;
-  }
-
-  // Valid Phone?
-  if(!isValidPhoneNumber(userPhone.value)) {
-    phoneError(userPhone);
-    errors = true;
-  }
-
-  if(errors) {
-    return false;
-  }
+    };
 
 
-  // Instead of sending an ajax request, lets just assume success and create an iframe to do the call
-  var iframe = document.createElement('iframe');
-  iframe.style.display = "none";
-  iframe.src = 'http://call.taskforce.is/create';
-  document.body.appendChild(iframe);
+    // On form submit, validate fields
 
-  // Hide form etc below here;
+    var onFormSubmit = function(e) {
+        var userZip = document.getElementById("userZip"),
+			userPhone = document.getElementById("userPhone"),
+			errorZones = document.getElementsByClassName("form-group"),
+			errors = false;
 
-  return false;
-}
+		// clear error styles
+		errorZones[0].className = errorZones[0].className.replace(/has\-error/g, "");
+		errorZones[1].className = errorZones[1].className.replace(/has\-error/g, "");
 
-// Attach listener to call form
+        errorBox.innerHTML = "";
+        errorBox.display = "none";
 
-var ele= document.getElementById("call-form");
-if(ele.addEventListener){
-    ele.addEventListener("submit", onFormSubmit, false);  //Cool modern browser!
-} else if (ele.attachEvent){
-    ele.attachEvent('onsubmit', onFormSubmit);          //The evil IE needs extra
-}     
+        e.preventDefault();
+
+        console.log(isValidZipCode(userZip.value), isValidPhoneNumber(userPhone.value));
+
+
+        // Valid Zip?
+        if (!isValidZipCode(userZip.value)) {
+            zipCodeError(userZip);
+            errors = true;
+        }
+
+        // Valid Phone?
+        if (!isValidPhoneNumber(userPhone.value)) {
+            phoneError(userPhone);
+            errors = true;
+        }
+
+        errorBox.style.display = errors ? "block" : "none";
+
+        if (!errors) {
+
+			// Instead of sending an ajax request, lets just assume success and create an iframe to do the call
+			var iframe = document.createElement('iframe');
+			iframe.style.display= "none";
+			iframe.src = 'http://call.taskforce.is/create';
+			document.body.appendChild(iframe);
+
+			document.getElementById("call-form").className += " fade-out";
+			document.getElementById("callHeader").textContent = "Calling You Now...";
+		}
+        // Hide form etc below here;
+
+        return false;
+    };
+
+    // Attach listener to call form
+
+    if (form.addEventListener) {
+        form.addEventListener("submit", onFormSubmit, false); //Cool modern browser!
+    } else if (form.attachEvent) {
+        form.attachEvent('onsubmit', onFormSubmit); //The evil IE needs extra
+    }
+
+}());
