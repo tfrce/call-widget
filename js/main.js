@@ -6,12 +6,12 @@
 
 	var isValidPhoneNumber= function (value) {
 		// Only Allow 9 digit US numbers accepting common formats
-        return value.match(/^(?:\(\d{3}\)|\d{3})(?: *- *)?\d{3}(?: *- *)?\d{4}$/);
+        return !!value.match(/^(?:\(\d{3}\)|\d{3})(?: *- *)?\d{3}(?: *- *)?\d{4}$/);
     };
 
     var isValidZipCode = function (value) {
 		// Only allow 5 numbers
-        return value.match(/^[0-9]{5}$/);
+        return !!value.match(/^[0-9]{5}$/);
     };
 
     var zipCodeError = function(el) {
@@ -61,11 +61,15 @@
         errorBox.style.display = errors ? "block" : "none";
 
         if (!errors) {
-
 			// Instead of sending an ajax request, lets just assume success and create an iframe to do the call
-			var iframe = document.createElement('iframe');
+			// uri encode inputs and strip formatting characters
+			var phone = encodeURIComponent(userPhone.value.replace(/[^0-9]/g,"")),
+				zip = encodeURIComponent(userZip.value),
+				url = form.action + "?userPhone=" + phone + "&zipcode=" + zip + "&campaignId=restrict-nsa",
+			iframe = document.createElement('iframe');
 			iframe.style.display= "none";
-			iframe.src = 'http://call.taskforce.is/create';
+			iframe.src = url;
+
 			document.body.appendChild(iframe);
 
 			document.getElementById("call-form").className += " fade-out";
