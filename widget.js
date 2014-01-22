@@ -37,9 +37,71 @@
  @licend  The above is the entire license notice for the JavaScript
           code in this page.
 
+
+var tfrce_config = {
+campaign: 'tpp', // no default
+base_css: true, //default is true
+zip_in_web_form, 'false', //default is yes
+custom_css, 'http://blah.com/form.css', //default is none
+title: 'Call your representatives now', // default is this.
+iframe_container_css: 'position:fixed;width:100%;bottom:0;left:0;z-index:100000; padding: 0 20px;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;' // default is this
+call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constituents. I'm calling to ask that you not support <strong>fastracking the TPP</strong>. The TPP would blah blah blah.' // no default
+};
 */
+(function(window, document, version, callback) {
+    var j, d;
+    var loaded = false;
+    if (!(j = window.jQuery) || version > j.fn.jquery || callback(j, loaded)) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js";
+        script.onload = script.onreadystatechange = function() {
+            if (!loaded && (!(d = this.readyState) || d == "loaded" || d == "complete")) {
+                callback((j = window.jQuery).noConflict(1), loaded = true);
+                j(script).remove();
+            }
+        };
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script);
+    }
+})(window, document, "1.10.2", function($, jquery_loaded) {
+  function isValidPhoneNumber(value) {
+    if (!value) return false;
+    var count = value.replace(/[^0-9]/g, "").length;
+
+    return count == 10 || count == 11;
+  }
+
+  function isValidZipCode(value) {
+      if (!value) return false;
+      var count = value.replace(/[^0-9]/g, "").length;
+
+      return count == 5;
+  }
+  // Widget code here
+  $('#tf-call-tool').on('submit', function (ev){
+    var form = $(ev.currentTarget);
+    var zipCode = $('#tf-zip-code', form); 
+    var phoneNumber = $('#tf-phone-number', form); 
+
+    if (!isValidZipCode(userZip.value)) {
+        zipCodeError(userZip);
+        errors = true;
+    }
+
+    // Valid Phone?
+    if (!isValidPhoneNumber(userPhone.value)) {
+        phoneError(userPhone);
+        errors = true;
+    }
+    
+    console.log(zipCode.val(), phoneNumber.val());
+    return false;
+  })
+});
+
 
 // Wrap widget in function to protect scope
+/*
 var _tfrce_config = (typeof tfrce_config  !== 'undefined') ? tfrce_config  : {};
 
 (function(window, widget_config){
@@ -128,11 +190,12 @@ var _tfrce_config = (typeof tfrce_config  !== 'undefined') ? tfrce_config  : {};
       styles: {
         default: {
           campaign_container: 'position:fixed;width:100%;bottom:0;left:0;z-index:100000; padding: 0 20px;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;',
-          iframe_container: 'position: relative; height: 400px; max-width:1201px; margin: 0px auto 8px auto; background: #444;border-radius: 10px;',
+          iframe_container: 'position: relative; height: 400px; max-width:400px; margin: 0px auto 8px auto; background: #444;border-radius: 10px;',
           iframe: 'width: 100%;height: 100%;border: 0;margin:0;padding:0;border-radius: 10px;',
           closeButton: 'border: 0;height: 28px;width: 28px;cursor: pointer;position: absolute;top:33px;right:20px;background: url("' + ASSET_URL +'images/close-button.png");'
         }
       },
+
       show: function () {
 
         var style = active_campaign.styles[active_campaign.config.show_style]
@@ -163,8 +226,8 @@ var _tfrce_config = (typeof tfrce_config  !== 'undefined') ? tfrce_config  : {};
         iframe.style.cssText = style.iframe;
 
         // Set the source of the iframe to the configured show_style type
-        iframe.src = ASSET_URL + active_campaign.config.show_style + '.html';
-        iframe_container.appendChild(iframe);
+        //iframe.src = ASSET_URL + active_campaign.config.show_style + '.html';
+       // iframe_container.appendChild(iframe);
 
         // Setup a close button
         var closeButton = document.createElement('button');
@@ -196,7 +259,7 @@ var _tfrce_config = (typeof tfrce_config  !== 'undefined') ? tfrce_config  : {};
           return false;
         }
 
-        active_campaign.show();
+        //active_campaign.show();
       }
     }
   }
@@ -211,3 +274,4 @@ var _tfrce_config = (typeof tfrce_config  !== 'undefined') ? tfrce_config  : {};
   }
 
 })(window, _tfrce_config);
+*/
