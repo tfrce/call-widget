@@ -1,8 +1,39 @@
 (function() {
 
+    // The default options
+    var defaults = {
+        campaign: 'restrict-nsa',               // Our current Campaign
+        zip: true,                              // show zip code if it's not given in the url
+        title: ''                               // the default is in the html.
+    };
+
 	// We'l use these
 	var errorBox = document.getElementById("error-text"),
 		form = document.getElementById("call-form");
+
+    var url  = window.location.href, index = url.indexOf("?") + 1;
+
+    if (index) {
+        var args = decodeURI(url.slice(index)).split("&"); // The url parameters
+
+        for (var split, l = args.length, i = 0; i < l; i++) {
+            split = args[i].split("=");
+            defaults[split[0]] = split[1];
+        }
+
+    }
+
+    if (defaults['title']) {
+        document.getElementById("callHeader").textContent = defaults['title'];
+    }
+
+    if (defaults['zip'].length == 5 && Number(defaults['zip'])) {
+        document.getElementById("userZip").value = defaults['zip'];
+        document.getElementById("userZip").parentNode.parentNode.style.display = "none";
+    }
+
+    document.getElementsByName("campaignId")[0] = defaults.campaign;
+
 
 	var isValidPhoneNumber= function (value) {
 		// Only Allow 9 digit US numbers accepting common formats
@@ -87,5 +118,7 @@
     } else if (form.attachEvent) {
         form.attachEvent('onsubmit', onFormSubmit); //The evil IE needs extra
     }
+
+
 
 }());

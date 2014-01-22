@@ -6,7 +6,7 @@ There are 2 ways to embed it
 
 Copy this into your page
 
-	<iframe src=""></iframe>
+	<iframe style="position:absolute;left:5px;bottom:5px;z-index:1000;height:300px;width:420px;" src=""></iframe>
 
 
 It supports the following url options
