@@ -1,38 +1,60 @@
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="styles.css" />
-<div id="tfrce-rally-widget-bottom-large-banner">
-    <div id="tfrce-content">
-        <p class="tfrce-body">
-     <h1>Call Your Representative</h1>
-        <form method="get" action="http://call.taskforce.is/create" id="call-form" role="form" class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 col-sm-offset-1 control-label" for="userZip">Zip Code</label>
-                <div class="col-sm-9">
-                    <input type="text" name="userZip" class="form-control" id="userZip">
+
+<div class="row" style="background: url(https://thedaywefightback.org/img/header.jpg) no-repeat">
+    <div class="col-md-5">
+        <h1 style="color: #fff; font-size: 50px;">TODAY IS THE DAY WE FIGHT BACK AGAINST MASS SPYING</h1>
+        <a href="https://en.wikipedia.org/wiki/The_Day_We_Fight_Back">Wikipedia: Learn more about Mass Surveillance</a>
+    </div>
+    <div class="col-md-7">
+        <div id="tfrce-rally-widget-bottom-large-banner">
+            <div id="tfrce-content">
+                <p>Dear reddit,
+                    <br />Mass spying is a grace threat to a free and open internet. Surveillance stifles dissent, empowers the government at the cost of individual liberties, and challenges our basic right to privacy.
+                    <br>Today, in memory of Aaron Swartz and the SOPA blackout, join us in fighting back agianst mass surveillance.
+                </p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Call Your Legislators</h5>
+                        <form method="get" action="http://call.taskforce.is/create" id="call-form" role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <input type="tel" placeholder="Your phone number" name="userPhone" class="form-control" id="userPhone">
+                            </div>
+                            <input type="hidden" value="restrict-nsa" name="campaignId">
+                            <!--<div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <label for="signup">
+                                        <input type="checkbox" name="signup" id="signup">Sign up for SMS alerts for future actions
+                                    </label>
+                                </div>
+                            </div>-->
+                            <span id="error-text"></span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="zipcode" name="userZip" class="form-control" id="userZip">
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="padding-right: 0;">
+                                    <input id="submit" type="Submit" value="Call Now" style="width: 100%;" class="btn  btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <h1>&</h1>
+                    </div>
+                    <div class="col-md-4">
+                    <p>Want to do more or not a US citizen, visit this page to find out more</p>
+                    <input id="submit" type="Submit" value="JOIN THE CAMPAIGN" style="font-size: 40px; width: 100%;" class="btn  btn-info">
+                    </div>
                 </div>
+
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 col-sm-offset-1 control-label" for="userPhone">Phone Number</label>
-                <div class="col-sm-9">
-                    <input type="tel" name="userPhone" class="form-control" id="userPhone">
-                </div>
-            </div>
-            <input type="hidden" value="restrict-nsa" name="campaignId">
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <label for="signup">
-                        <input type="checkbox" name="signup" id="signup"> Sign up for SMS alerts for future actions
-                    </label>
-                </div>
-            </div>
-            <span id="error-text"></span>
-        <input id="submit" type="Submit" value="Call Now" class="btn col-sm-12 col-xs-12 col-sm-offset-1 btn-primary">
-        </form>
-        </p>
-    
+        </div>
     </div>
 </div>
 <script type="text/javascript">
-
 function isValidPhoneNumber(value) {
     if (!value) return false;
     var count = value.replace(/[^0-9]/g, "").length;
@@ -48,62 +70,62 @@ function isValidZipCode(value) {
 }
 
 
-var zipCodeError = function (el) {
-  document.getElementById("error-text").innerHTML += "Invalid Zip";
+var zipCodeError = function(el) {
+    document.getElementById("error-text").innerHTML += "Invalid Zip";
 
 };
 
-var phoneError = function (el) {
-  document.getElementById("error-text").innerHTML += "Invalid Phone";
+var phoneError = function(el) {
+    document.getElementById("error-text").innerHTML += "Invalid Phone";
 };
 
 
 // On form submit, validate fields
 
-var onFormSubmit = function (e) {
-  document.getElementById("error-text").innerHTML = "";
-  e.preventDefault();
-  var userZip = document.getElementById("userZip");
-  var userPhone = document.getElementById("userPhone");
+var onFormSubmit = function(e) {
+    document.getElementById("error-text").innerHTML = "";
+    e.preventDefault();
+    var userZip = document.getElementById("userZip");
+    var userPhone = document.getElementById("userPhone");
 
-  console.log(isValidZipCode(userZip.value), isValidPhoneNumber(userPhone.value));
+    console.log(isValidZipCode(userZip.value), isValidPhoneNumber(userPhone.value));
 
-  var errors = false;
+    var errors = false;
 
-  // Valid Zip?
-  if(!isValidZipCode(userZip.value)) {
-    zipCodeError(userZip);
-    errors = true;
-  }
+    // Valid Zip?
+    if (!isValidZipCode(userZip.value)) {
+        zipCodeError(userZip);
+        errors = true;
+    }
 
-  // Valid Phone?
-  if(!isValidPhoneNumber(userPhone.value)) {
-    phoneError(userPhone);
-    errors = true;
-  }
+    // Valid Phone?
+    if (!isValidPhoneNumber(userPhone.value)) {
+        phoneError(userPhone);
+        errors = true;
+    }
 
-  if(errors) {
+    if (errors) {
+        return false;
+    }
+
+
+    // Instead of sending an ajax request, lets just assume success and create an iframe to do the call
+    var iframe = document.createElement('iframe');
+    iframe.style.display = "none";
+    iframe.src = 'http://call.taskforce.is/create';
+    document.body.appendChild(iframe);
+
+    // Hide form etc below here;
+
     return false;
-  }
-
-
-  // Instead of sending an ajax request, lets just assume success and create an iframe to do the call
-  var iframe = document.createElement('iframe');
-  iframe.style.display = "none";
-  iframe.src = 'http://call.taskforce.is/create';
-  document.body.appendChild(iframe);
-
-  // Hide form etc below here;
-
-  return false;
 }
 
 // Attach listener to call form
 
-var ele= document.getElementById("call-form");
-if(ele.addEventListener){
-    ele.addEventListener("submit", onFormSubmit, false);  //Cool modern browser!
-} else if (ele.attachEvent){
-    ele.attachEvent('onsubmit', onFormSubmit);          //The evil IE needs extra
-}     
+var ele = document.getElementById("call-form");
+if (ele.addEventListener) {
+    ele.addEventListener("submit", onFormSubmit, false); //Cool modern browser!
+} else if (ele.attachEvent) {
+    ele.attachEvent('onsubmit', onFormSubmit); //The evil IE needs extra
+}
 </script>
