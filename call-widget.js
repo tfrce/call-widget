@@ -116,9 +116,10 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
     $.ajax({
-      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=424235164223',
+      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=1asdasd4242351643',
       type: 'GET',
       dataType: 'jsonp',
+      crossDomain: true,
       success: function () {
         console.log(arguments);
       },
