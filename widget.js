@@ -83,17 +83,31 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
     var zipCode = $('#tf-zip-code', form); 
     var phoneNumber = $('#tf-phone-number', form); 
 
-    if (!isValidZipCode(userZip.value)) {
-        zipCodeError(userZip);
+    if (!isValidZipCode(zipCode.val())) {
+        //zipCodeError(userZip);
         errors = true;
     }
 
     // Valid Phone?
-    if (!isValidPhoneNumber(userPhone.value)) {
-        phoneError(userPhone);
+    if (!isValidPhoneNumber(phoneNumber.val())) {
+        //phoneError(userPhone);
         errors = true;
     }
-    
+    //9498788202 - sina
+    //4242351643 - skype
+    //4154949855 - g voice
+    //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
+    $.ajax({
+      url: 'http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=01161481065350',
+      type: 'GET',
+      dataType: 'jsonp',
+      success: function () {
+        console.log(arguments);
+      },
+      error: function () {
+        console.log(arguments);
+      }
+    });
     console.log(zipCode.val(), phoneNumber.val());
     return false;
   })
