@@ -4,7 +4,7 @@ The call widget is a Javascript tool which allows developers to easily embed acc
 
 ## Getting Started
 
-```
+```html
 <link href="//call-widget.taskforce.is/call-widget/css/basic.css" rel="stylesheet">
 <form></form>
 <script type="text/javascript">
