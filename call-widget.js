@@ -77,8 +77,6 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
 
   var campaign = tforce_config.campaign;
 
-
-  tforce_config.debug = widget_config.debug || false;
   /*
   fig.show_style = widget_config.show_style || 'default';
   */
@@ -118,7 +116,7 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
     $.ajax({
-      url: 'http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643',
+      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=424235164223',
       type: 'GET',
       dataType: 'jsonp',
       success: function () {
