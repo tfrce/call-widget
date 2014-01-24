@@ -2,6 +2,157 @@
  Sina - Basic css formatting goes here
 */
 
-.tf-input-error {
-	border: 1px solid #ff0000;
+#tf-call-widget-container, #tf-call-widget-container:before, #tf-call-widget-container:after, 
+#tf-call-widget-container label, #tf-call-widget-container label:before, #tf-call-widget-container label:after, 
+#tf-call-widget-container input, #tf-call-widget-container input:before, #tf-call-widget-container input:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
+#tf-call-widget-container button,#tf-call-widget-container input, 
+#tf-call-widget-container select, #tf-call-widget-container textarea {
+margin: 0;
+font-family: inherit;
+font-size: 100%;
+}
+
+#tf-call-widget-container button, #tf-call-widget-container input {
+line-height: normal;
+}
+
+#tf-call-widget-container {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #333;
+	position: relative;
+	padding: 5px 15px 15px;
+	margin: 0 -15px 15px;
+	background-color: #fafafa;
+	box-shadow: inset 0 3px 6px rgba(0,0,0,.05);
+	border-color: #e5e5e5 #eee #eee;
+	border-style: solid;
+	border-width: 1px 0;
+}
+
+#tf-call-widget-container label {
+	display: inline-block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+#tf-call-widget-container h5 {
+	font-size: 17px;
+	font-weight: bold;
+	color: #999;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom:25px;
+}
+
+#tf-call-widget-container input#tf-zip-code, #tf-call-widget-container input#tf-phone-number  {
+	margin: 0;
+	font-family: inherit;
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555;
+	vertical-align: middle;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	margin-bottom: 15px;
+}
+
+#tf-call-widget-container input:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
+}
+
+#tf-call-widget-container #tf-submit {
+	/* button, input type=submit */
+	cursor: pointer;
+	-webkit-appearance: button;
+	text-transform: none;
+
+	/* .btn */
+	display: inline-block;
+	padding: 8px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+	
+	/* btn-lg*/
+	padding: 14px 16px;
+	font-size: 18px;
+	line-height: 1.33;
+	border-radius: 6px;
+
+	/* btn-block */
+	display: block;
+	width: 100%;
+	padding-right: 0;
+	padding-left: 0;
+
+	/* .btn-success */
+	color: #ffffff;
+	background-color: #73a839;
+	border-color: #73a839;
+
+	background-image: -webkit-linear-gradient(#88c149, #73a839 60%, #699934);
+	background-image: linear-gradient(#88c149, #73a839 60%, #699934);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #59822c;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff88c149', endColorstr='#ff699934', GradientType=0);
+	filter: none;
+}
+
+#tf-call-widget-container #tf-submit:hover {
+	color: #fff;
+	background-color: #6B963E;
+	border-color: #398439;
+	background-image: none;
+}
+
+#tf-call-widget-container #tf-submit:active {
+	outline: 0;
+	-webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	color: #ffffff;
+	background-color: #5e8a2f;
+	border-color: #547a29;
+	background-image: none;
+}
+
+#tf-input-error {
+	border: 1px solid #ff0000;
+	display: block;
+	margin-top: 0em;
+}
+
