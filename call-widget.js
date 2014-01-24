@@ -91,7 +91,8 @@
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
     var submitEl = $('#tf-submit', form); 
-
+    var submitText = submitEl.val();
+    var submitWaitingText = submitEl.attr('data-waiting-text') || 'Calling';
 
     // Reset any error messages
     $(zipCodeEl).removeClass('tf-input-error');
@@ -124,7 +125,7 @@
     // Disable buttons
     zipCodeEl.attr('disabled', 'disabled');
     phoneNumberEl.attr('disabled', 'disabled');
-    submitEl.attr('disabled', 'disabled').val('Calling');
+    submitEl.attr('disabled', 'disabled').val(submitWaitingText);
 
     // 9498788202 - sina
     // 4242351643 - skype
@@ -144,13 +145,13 @@
         }
         zipCodeEl.removeAttr('disabled');
         phoneNumberEl.removeAttr('disabled');
-        submitEl.removeAttr('disabled').val('Call Now');
+        submitEl.removeAttr('disabled').val(submitText);
       },
       error: function () {
         $('#tf-error-text').text('An Unknown error happened');
         zipCodeEl.removeAttr('disabled');
         phoneNumberEl.removeAttr('disabled');
-        submitEl.removeAttr('disabled').val('Call Now');
+        submitEl.removeAttr('disabled').val(submitText);
       }
     });
     return false;
