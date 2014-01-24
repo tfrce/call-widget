@@ -207,6 +207,10 @@ label#tf-phone-number-label.tf-input-error:after {
 	background-image: none;
 }
 
+#tf-call-widget-success h5 {
+	margin-bottom:15px;
+}
+
 #tf-reset {
 	cursor:pointer;
 	cursor:hand;
