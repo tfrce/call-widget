@@ -72,14 +72,14 @@
 
   function isValidPhoneNumber(value) {
     if (!value) return false;
-    var count = value.replace(/[^0-9]/g, "").length;
+    var count = value.length;
 
     return count == 10 || count == 11;
   }
 
   function isValidZipCode(value) {
       if (!value) return false;
-      var count = value.replace(/[^0-9]/g, "").length;
+      var count = value.length;
 
       return count == 5;
   }
@@ -91,7 +91,8 @@
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
     var submitEl = $('#tf-submit', form); 
-
+    var submitText = submitEl.val();
+    var submitWaitingText = submitEl.attr('data-waiting-text') || 'Calling';
 
     // Reset any error messages
     $(zipCodeEl).removeClass('tf-input-error');
@@ -99,10 +100,10 @@
     $('#tf-error-text').text('');
 
     // Validate form inputs
-    var zipCode = zipCodeEl.val();
-    var phoneNumber = phoneNumberEl.val();
+    var zipCode = zipCodeEl.val().replace(/[^\d.]/g, '');
+    var phoneNumber = phoneNumberEl.val().replace(/[^\d.]/g, '');
     var errors = false;
-
+    console.log(zipCode, phoneNumber);
     // Valid Zip?
     if (!isValidZipCode(zipCode)) {
         zipCodeEl.addClass('tf-input-error');
@@ -124,19 +125,19 @@
     // Disable buttons
     zipCodeEl.attr('disabled', 'disabled');
     phoneNumberEl.attr('disabled', 'disabled');
-    submitEl.attr('disabled', 'disabled').val('Calling');
+    submitEl.attr('disabled', 'disabled').val(submitWaitingText);
 
     // 9498788202 - sina
     // 4242351643 - skype
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
     $.ajax({
-      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=1asdasd4242351643',
+      url: 'http://call-congress.taskforce.is/create?campaignId=' + campaign + '&userzip=' + zipCode + '&userPhone=' + phoneNumber,
       type: 'GET',
       dataType: 'jsonp',
       crossDomain: true,
       success: function (res) {
-        if(res.message) {
+        if(res.message !== 'queued') {
           $('#tf-error-text').text(res.message);
         } else {
           $('#tf-call-widget-form').hide();
@@ -144,13 +145,13 @@
         }
         zipCodeEl.removeAttr('disabled');
         phoneNumberEl.removeAttr('disabled');
-        submitEl.removeAttr('disabled').val('Call Now');
+        submitEl.removeAttr('disabled').val(submitText);
       },
       error: function () {
         $('#tf-error-text').text('An Unknown error happened');
         zipCodeEl.removeAttr('disabled');
         phoneNumberEl.removeAttr('disabled');
-        submitEl.removeAttr('disabled').val('Call Now');
+        submitEl.removeAttr('disabled').val(submitText);
       }
     });
     return false;
