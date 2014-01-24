@@ -2,11 +2,12 @@
 
 The call widget is a Javascript tool which allows developers to easily embed access to our [call congress tool](https://github.com/tfrce/call-congress). 
 
+Check out the <a href="http://tfrce.github.io/call-widget/example/default.html">demo!</a>
 
 ## Getting Started
 
 ```html
-<link href="//call-widget.taskforce.is/call-widget/css/basic.css" rel="stylesheet">
+<link href="//call-widget.taskforce.is/call-widget/css/basic.min.css" rel="stylesheet">
 <div id="tf-call-widget-container">
   <div id="tf-call-widget-form">
     <h5>Call Your Legislators</h5>
@@ -20,14 +21,15 @@ The call widget is a Javascript tool which allows developers to easily embed acc
   </div>
   <div id="tf-call-widget-success" style="display: none;">
     <h5>What to say</h5>
-    <p>Dear Rep, I don't like this</p>
-    <p id="tf-reset">Call didn't come through? Try again.</p>
+       <p>Hi, I'm one of Representative/Senator _______'s constituents, and I'm calling  to oppose Fast Track for the Trans-Pacific Partnership agreement. Congress needs time to debate and amend trade agreements that affect all of us. Fast Tracking the TPP is undemocratic, and I expect my lawmakers to oppose it. I'll be watching this issue closely in 2014.</p>
+      <p><strong>You can press * at any time to hang up and call the next representative.</strong></p>
+      <p id="tf-reset">Call didn't come through? Try again.</p>
+    </div>
+    <span id="tf-error-text"></span>
   </div>
-  <span id="tf-error-text"></span>
-</div>
 <script>
   var tforce_config = {
-    campaign: 'tpp'
+    campaign: 'stop-fast-track'
   };
 </script>
 <script type="text/javascript" src="//call-widget.taskforce.is/call-widget/call-widget.min.js"></script>

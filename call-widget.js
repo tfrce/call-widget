@@ -136,11 +136,6 @@
     zipCodeEl.attr('disabled', 'disabled');
     phoneNumberEl.attr('disabled', 'disabled');
     submitEl.attr('disabled', 'disabled').val(submitWaitingText);
-    console.log(campaign, phoneNumber, zipCode)
-    // 9498788202 - sina
-    // 4242351643 - skype
-    // 4154949855 - gvoice
-    //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643
     var url = 'https://call-congress.taskforce.is/create?campaignId=' + campaign + '&userPhone=' + phoneNumber;
     if(typeof zipCode !== 'undefined') {
       url += '&userzip=' + zipCode;
