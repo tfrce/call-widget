@@ -90,6 +90,8 @@
     var form = $(ev.currentTarget);
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
+    var submitEl = $('#tf-submit', form); 
+
 
     // Reset any error messages
     $(zipCodeEl).removeClass('tf-input-error');
@@ -117,6 +119,13 @@
     if(errors) {
       return false;
     }
+
+
+    // Disable buttons
+    zipCodeEl.attr('disabled', 'disabled');
+    phoneNumberEl.attr('disabled', 'disabled');
+    submitEl.attr('disabled', 'disabled').val('Calling');
+
     // 9498788202 - sina
     // 4242351643 - skype
     // 4154949855 - gvoice
@@ -127,11 +136,21 @@
       dataType: 'jsonp',
       crossDomain: true,
       success: function (res) {
-        $('#tf-call-widget-form').hide();
-        $('#tf-call-widget-success').show();
+        if(res.message) {
+          $('#tf-error-text').text(res.message);
+        } else {
+          $('#tf-call-widget-form').hide();
+          $('#tf-call-widget-success').show();
+        }
+        zipCodeEl.removeAttr('disabled');
+        phoneNumberEl.removeAttr('disabled');
+        submitEl.removeAttr('disabled').val('Call Now');
       },
       error: function () {
         $('#tf-error-text').text('An Unknown error happened');
+        zipCodeEl.removeAttr('disabled');
+        phoneNumberEl.removeAttr('disabled');
+        submitEl.removeAttr('disabled').val('Call Now');
       }
     });
     return false;
