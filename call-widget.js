@@ -72,14 +72,14 @@
 
   function isValidPhoneNumber(value) {
     if (!value) return false;
-    var count = value.replace(/[^0-9]/g, "").length;
+    var count = value.length;
 
     return count == 10 || count == 11;
   }
 
   function isValidZipCode(value) {
       if (!value) return false;
-      var count = value.replace(/[^0-9]/g, "").length;
+      var count = value.length;
 
       return count == 5;
   }
@@ -100,10 +100,10 @@
     $('#tf-error-text').text('');
 
     // Validate form inputs
-    var zipCode = zipCodeEl.val();
-    var phoneNumber = phoneNumberEl.val();
+    var zipCode = zipCodeEl.val().replace(/[^\d.]/g, '');
+    var phoneNumber = phoneNumberEl.val().replace(/[^\d.]/g, '');
     var errors = false;
-
+    console.log(zipCode, phoneNumber);
     // Valid Zip?
     if (!isValidZipCode(zipCode)) {
         zipCodeEl.addClass('tf-input-error');
@@ -132,7 +132,7 @@
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
     $.ajax({
-      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643',
+      url: 'http://call-congress.taskforce.is/create?campaignId=' + campaign + '&userzip=' + zipCode + '&userPhone=' + phoneNumber,
       type: 'GET',
       dataType: 'jsonp',
       crossDomain: true,
