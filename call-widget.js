@@ -46,6 +46,7 @@
     // Load jQuery is not loaded
     var j, d;
     var loaded = false;
+    // TODO - Version check doesn't work correctly
     if (!(j = window.jQuery) || version > j.fn.jquery || callback(j, loaded)) {
         var script = document.createElement("script");
         script.type = "text/javascript";
@@ -168,5 +169,12 @@
       }
     });
     return false;
-  })
+  });
+  $('#tf-reset').on('click', function (ev){
+    $('#tf-zip-code').val(''); 
+    $('#tf-phone-number').val(''); 
+    $('#tf-call-widget-form').show();
+    $('#tf-call-widget-success').hide();
+  });
+
 });
