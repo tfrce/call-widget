@@ -100,6 +100,8 @@
     // Reset any error messages
     $(zipCodeEl).removeClass('tf-input-error');
     $(phoneNumberEl).removeClass('tf-input-error');
+    $(phoneNumberLabelEl).removeClass('tf-input-error');
+    $(phoneNumberLabelEl).removeClass('tf-input-error');
     $('#tf-error-text').text('');
     var errors = false;
 
