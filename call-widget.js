@@ -13,11 +13,11 @@
 
   A generic widget include script to connect calls to congress
 
-  <thomasalwyndavis@gmail.com> or http://taskforce.is for support
+  http://github.com/tfrce/call-widget or <thomasalwyndavis@gmail.com> or http://taskforce.is for support
 
   ===============================================================================
 
-  @source: https://raw.github.com/tfrce/project-megaphone/gh-pages/widget.js
+  @source: https://raw.github.com/tfrce/call-widget/call-widget.js
 
   @licstart  The following is the entire license notice for the
              JavaScript code in this page.
@@ -83,6 +83,7 @@
 
       return count == 5;
   }
+
   // Widget code here
   $('#tf-call-tool').on('submit', function (ev){
 
@@ -90,6 +91,8 @@
     var form = $(ev.currentTarget);
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
+    var zipCodeLabelEl = $('[for="tf-zip-code"]', form); 
+    var phoneNumberLabelEl = $('[for="tf-phone-number"]', form); 
     var submitEl = $('#tf-submit', form); 
     var submitText = submitEl.val();
     var submitWaitingText = submitEl.attr('data-waiting-text') || 'Calling';
@@ -98,21 +101,25 @@
     $(zipCodeEl).removeClass('tf-input-error');
     $(phoneNumberEl).removeClass('tf-input-error');
     $('#tf-error-text').text('');
+    var errors = false;
 
     // Validate form inputs
-    var zipCode = zipCodeEl.val().replace(/[^\d.]/g, '');
-    var phoneNumber = phoneNumberEl.val().replace(/[^\d.]/g, '');
-    var errors = false;
-    console.log(zipCode, phoneNumber);
-    // Valid Zip?
-    if (!isValidZipCode(zipCode)) {
-        zipCodeEl.addClass('tf-input-error');
-        errors = true;
+    if(zipCodeEl.length > 0) {
+      var zipCode = zipCodeEl.val().replace(/[^\d.]/g, '');
+      // Valid Zip?
+      if (!isValidZipCode(zipCode)) {
+          zipCodeEl.addClass('tf-input-error');
+          zipCodeLabelEl.addClass('tf-input-error');
+          errors = true;
+      }
     }
 
     // Valid Phone?
+    var phoneNumber = phoneNumberEl.val().replace(/[^\d.]/g, '');
+
     if (!isValidPhoneNumber(phoneNumber)) {
         phoneNumberEl.addClass('tf-input-error');
+        phoneNumberLabelEl.addClass('tf-input-error');
         errors = true;
     }
 
@@ -126,13 +133,17 @@
     zipCodeEl.attr('disabled', 'disabled');
     phoneNumberEl.attr('disabled', 'disabled');
     submitEl.attr('disabled', 'disabled').val(submitWaitingText);
-
+    console.log(campaign, phoneNumber, zipCode)
     // 9498788202 - sina
     // 4242351643 - skype
     // 4154949855 - gvoice
-    //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
+    //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643
+    var url = 'http://call-congress.taskforce.is/create?campaignId=' + campaign + '&userPhone=' + phoneNumber;
+    if(typeof zipCode !== 'undefined') {
+      url += '&userzip=' + zipCode;
+    }
     $.ajax({
-      url: 'http://call-congress.taskforce.is/create?campaignId=' + campaign + '&userzip=' + zipCode + '&userPhone=' + phoneNumber,
+      url: url,
       type: 'GET',
       dataType: 'jsonp',
       crossDomain: true,
