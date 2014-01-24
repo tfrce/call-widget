@@ -1,7 +1,3 @@
-label.tf-input-error:after {
-	color: #ff0000;
-	content: 'Invalid Zip 5 digits';
-}
 
 /*
  Sina - Basic css formatting goes here
@@ -99,6 +95,18 @@ line-height: normal;
 	color: #a94442
 }
 
+label.tf-input-error:after {
+	color: #5F5F5F;
+	font-size:13px;
+}
+
+label#tf-zip-code.tf-input-error:after {
+	content: ' - Check your zip code';
+}
+
+label#tf-phone-number.tf-input-error:after {
+	content: ' - Enter a valid US number';
+}
 
 #tf-call-widget-container #tf-submit {
 	/* button, input type=submit */
