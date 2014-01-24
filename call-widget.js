@@ -141,7 +141,7 @@
     // 4242351643 - skype
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643
-    var url = 'http://call-congress.taskforce.is/create?campaignId=' + campaign + '&userPhone=' + phoneNumber;
+    var url = 'https://call-congress.taskforce.is/create?campaignId=' + campaign + '&userPhone=' + phoneNumber;
     if(typeof zipCode !== 'undefined') {
       url += '&userzip=' + zipCode;
     }
