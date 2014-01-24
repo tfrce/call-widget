@@ -38,21 +38,12 @@
   4, provided you include this license notice and a URL through which
   recipients can access the Corresponding Source.
  
- @licend  The above is the entire license notice for the JavaScript
+ @license  The above is the entire license notice for the JavaScript
           code in this page.
 
-
-var tfrce_config = {
-campaign: 'tpp', // no default
-base_css: true, //default is true
-zip_in_web_form, 'false', //default is yes
-custom_css, 'http://blah.com/form.css', //default is none
-title: 'Call your representatives now', // default is this.
-iframe_container_css: 'position:fixed;width:100%;bottom:0;left:0;z-index:100000; padding: 0 20px;-webkit-box-sizing: border-box; -moz-box-sizing: border-box;' // default is this
-call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constituents. I'm calling to ask that you not support <strong>fastracking the TPP</strong>. The TPP would blah blah blah.' // no default
-};
 */
 (function(window, document, version, callback) {
+    // Load jQuery is not loaded
     var j, d;
     var loaded = false;
     if (!(j = window.jQuery) || version > j.fn.jquery || callback(j, loaded)) {
@@ -68,6 +59,8 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
         (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script);
     }
 })(window, document, "1.10.2", function($, jquery_loaded) {
+  // Execute widget code here
+  
   var tforce_config = window.tforce_config;
   
   if(typeof tforce_config.campaign === 'undefined') {
@@ -77,10 +70,6 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
 
   var campaign = tforce_config.campaign;
 
-  /*
-  fig.show_style = widget_config.show_style || 'default';
-  */
-  console.log(tforce_config);
   function isValidPhoneNumber(value) {
     if (!value) return false;
     var count = value.replace(/[^0-9]/g, "").length;
@@ -96,20 +85,37 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
   }
   // Widget code here
   $('#tf-call-tool').on('submit', function (ev){
+
+    // Select form elements
     var form = $(ev.currentTarget);
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
+
+    // Reset any error messages
+    $(zipCodeEl).removeClass('tf-input-error');
+    $(phoneNumberEl).removeClass('tf-input-error');
+    $('#tf-error-text').text('');
+
+    // Validate form inputs
     var zipCode = zipCodeEl.val();
     var phoneNumber = phoneNumberEl.val();
+    var errors = false;
+
+    // Valid Zip?
     if (!isValidZipCode(zipCode)) {
-        //zipCodeError(userZip);
+        zipCodeEl.addClass('tf-input-error');
         errors = true;
     }
 
     // Valid Phone?
     if (!isValidPhoneNumber(phoneNumber)) {
-        //phoneError(userPhone);
+        phoneNumberEl.addClass('tf-input-error');
         errors = true;
+    }
+
+    // If any errors, cancel submitting the form
+    if(errors) {
+      return false;
     }
     // 9498788202 - sina
     // 4242351643 - skype
@@ -120,14 +126,14 @@ call_script_html: 'Hi, my name is _____ from _____, and I'm one of your constitu
       type: 'GET',
       dataType: 'jsonp',
       crossDomain: true,
-      success: function () {
-        console.log(arguments);
+      success: function (res) {
+        $('#tf-call-widget-form').hide();
+        $('#tf-call-widget-success').show();
       },
       error: function () {
-        console.log(arguments);
+        $('#tf-error-text').text('An Unknown error happened');
       }
     });
-    console.log(zipCode, phoneNumber);
     return false;
   })
 });
