@@ -91,16 +91,31 @@ line-height: normal;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
 
-#tf-call-widget-container input.tf-input-error {
-	border-color: #a94442;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-}
-
-#tf-call-widget-container input.tf-input-error:focus {
+#tf-call-widget-container input#tf-zip-code.tf-input-error:focus, 
+#tf-call-widget-container input#tf-phone-number.tf-input-error:focus  {
 	border-color: #843534;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 6px #ce8483;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 6px #ce8483;
+}
+
+#tf-call-widget-container input#tf-phone-number[disabled],
+#tf-call-widget-container input#tf-zip-code[disabled] {
+	cursor: default;
+	cursor: not-allowed;
+	background-color: #eee;
+}
+
+#tf-call-widget-container input#tf-submit[disabled] {
+	background-color: #8D8D8D;
+	background-image: none;
+	border-color: #4B4B4B;
+	color: #eee;
+}
+
+
+
+label.tf-input-error {
+	color: #a94442;
 }
 
 label.tf-input-error:after {
@@ -114,6 +129,12 @@ label#tf-zip-code-label.tf-input-error:after {
 
 label#tf-phone-number-label.tf-input-error:after {
 	content: ' - Enter a valid US number';
+}
+
+#tf-error-text {
+	display:block;
+	color: #a94442;
+	margin-top:6px;
 }
 
 #tf-call-widget-container #tf-submit {
@@ -186,9 +207,13 @@ label#tf-phone-number-label.tf-input-error:after {
 	background-image: none;
 }
 
-#tf-input-error {
-	border: 1px solid #ff0000;
-	display: block;
-	margin-top: 0em;
+#tf-reset {
+	cursor:pointer;
+	cursor:hand;
+	color: #428bca;
+}
+
+#tf-reset:hover {
+	text-decoration:underline;
 }
 
