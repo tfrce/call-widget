@@ -2,6 +2,7 @@
 
 The call widget is a Javascript tool which allows developers to easily embed access to our [call congress tool](https://github.com/tfrce/call-congress). 
 
+
 ## Getting Started
 
 ```html
@@ -36,6 +37,11 @@ Simply copy and paste that where you would like your form to appear. Make sure t
 
 You can view a basic example of the form on our [example.html](http://tfrce.github.io/call-widget/example/example.html).
 
+On success the `div#tf-call-widget-success` will be shown and the form hidden. 
+
+Feel free to remove the external style sheet, if you would like to add your own styles. Error messages are done in the css using `:after` pseudo class.
+
+
 ## Direct API Access
 
-You don't need to use our Javascript and can view the [full documentation](http://github.com/tfrce/call-congress) of the call-congress API or even run up your own call-congress server.
+You don't need to use our Javascript and can view the [full documentation](http://github.com/tfrce/call-congress) of the call-congress API or even run up your own call-congress server. Use Github issues to get in touch!
