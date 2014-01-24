@@ -131,12 +131,12 @@
     // 4154949855 - gvoice
     //http://call.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4154949855
     $.ajax({
-      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=1asdasd4242351643',
+      url: 'http://call-congress.taskforce.is/create?campaignId=restrict-nsa&userzip=94110&userPhone=4242351643',
       type: 'GET',
       dataType: 'jsonp',
       crossDomain: true,
       success: function (res) {
-        if(res.message) {
+        if(res.message !== 'queued') {
           $('#tf-error-text').text(res.message);
         } else {
           $('#tf-call-widget-form').hide();
