@@ -80,6 +80,18 @@ line-height: normal;
 	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(102,175,233,0.6);
 }
 
+#tf-call-widget-container input#tf-zip-code.tf-input-error, 
+#tf-call-widget-container input#tf-phone-number.tf-input-error  {
+	border-color: #a94442;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+#tf-call-widget-container .tf-input-error {
+	color: #a94442
+}
+
+
 #tf-call-widget-container #tf-submit {
 	/* button, input type=submit */
 	cursor: pointer;
