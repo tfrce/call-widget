@@ -83,7 +83,7 @@
 
       return count == 5;
   }
-  
+
   // Widget code here
   $('#tf-call-tool').on('submit', function (ev){
 
@@ -91,6 +91,8 @@
     var form = $(ev.currentTarget);
     var zipCodeEl = $('#tf-zip-code', form); 
     var phoneNumberEl = $('#tf-phone-number', form); 
+    var zipCodeLabelEl = $('[for="tf-zip-code"]', form); 
+    var phoneNumberLabelEl = $('[for="tf-phone-number"]', form); 
     var submitEl = $('#tf-submit', form); 
     var submitText = submitEl.val();
     var submitWaitingText = submitEl.attr('data-waiting-text') || 'Calling';
@@ -107,6 +109,7 @@
       // Valid Zip?
       if (!isValidZipCode(zipCode)) {
           zipCodeEl.addClass('tf-input-error');
+          zipCodeLabelEl.addClass('tf-input-error');
           errors = true;
       }
     }
@@ -116,6 +119,7 @@
 
     if (!isValidPhoneNumber(phoneNumber)) {
         phoneNumberEl.addClass('tf-input-error');
+        phoneNumberLabelEl.addClass('tf-input-error');
         errors = true;
     }
 
