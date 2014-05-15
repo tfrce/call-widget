@@ -37,7 +37,7 @@ Check out the <a href="http://tfrce.github.io/call-widget/example/default.html">
 
 Simply copy and paste that where you would like your form to appear. Make sure the **ids** are set but feel free to change the structure of the HTML/CSS to match your website's design.
 
-You can view a basic example of the form on our [example.html](http://tfrce.github.io/call-widget/example/example.html).
+You can view a basic example of the form on our [default.html](http://tfrce.github.io/call-widget/example/default.html).
 
 On success the `div#tf-call-widget-success` will be shown and the form hidden. 
 
