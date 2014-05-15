@@ -7,7 +7,7 @@ Check out the <a href="http://tfrce.github.io/call-widget/example/default.html">
 ## Getting Started
 
 ```html
-<link href="//call-widget.taskforce.is/call-widget/css/basic.min.css" rel="stylesheet">
+<link href="//call-widget.taskforce.is/css/basic.min.css" rel="stylesheet">
 <div id="tf-call-widget-container">
   <div id="tf-call-widget-form">
     <h5>Call Your Legislators</h5>
@@ -32,7 +32,7 @@ Check out the <a href="http://tfrce.github.io/call-widget/example/default.html">
     campaign: 'stop-fast-track'
   };
 </script>
-<script type="text/javascript" src="//call-widget.taskforce.is/call-widget/call-widget.min.js"></script>
+<script type="text/javascript" src="//call-widget.taskforce.is/call-widget.min.js"></script>
 ```
 
 Simply copy and paste that where you would like your form to appear. Make sure the **ids** are set but feel free to change the structure of the HTML/CSS to match your website's design.
