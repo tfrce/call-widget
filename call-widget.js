@@ -138,7 +138,7 @@
     submitEl.attr('disabled', 'disabled').val(submitWaitingText);
     var url = 'https://call-congress.taskforce.is/create?campaignId=' + campaign + '&userPhone=' + phoneNumber;
     if(typeof zipCode !== 'undefined') {
-      url += '&userzip=' + zipCode;
+      url += '&zipcode=' + zipCode;
     }
     $.ajax({
       url: url,
