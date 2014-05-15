@@ -11,7 +11,7 @@ Check out the <a href="http://tfrce.github.io/call-widget/example/default.html">
 <div id="tf-call-widget-container">
   <div id="tf-call-widget-form">
     <h5>Call Your Legislators</h5>
-    <form method="get" action="https://call-widget.taskforce.is/create" id="tf-call-tool" role="form">
+    <form method="get" action="https://call-congress.taskforce.is/create" id="tf-call-tool" role="form">
         <label for="tf-zip-code" id="tf-zip-code-label">Zip Code</label>
         <input type="text" id="tf-zip-code">
         <label for="tf-phone-number" id="tf-phone-number-label">Phone Number</label>
