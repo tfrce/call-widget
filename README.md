@@ -43,6 +43,9 @@ On success the `div#tf-call-widget-success` will be shown and the form hidden.
 
 Feel free to remove the external style sheet, if you would like to add your own styles. Error messages are done in the css using `:after` pseudo class.
 
+## Collecting the zipcode from users on the phone
+
+It's also possible to collect phone numbers from users when they dial in, rather than on the webform. You can find a demo of that [here](http://tfrce.github.io/call-widget/example/default-nozip.html), and view the page source [here](https://github.com/tfrce/call-widget/blob/gh-pages/example/default-nozip.html).
 
 ## Direct API Access
 
